@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './features/auth/auth-context';
 import { LoginPage } from './features/auth/login-page';
 import { ProjectListPage } from './features/projects/project-list-page';
+import { ProjectDetailPage } from './features/projects/project-detail-page';
 
 export function AppRouter() {
   const { user, isLoading } = useAuth();
@@ -11,13 +12,10 @@ export function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={user ? <ProjectListPage /> : <LoginPage />}
-        />
+        <Route path="/" element={user ? <ProjectListPage /> : <LoginPage />} />
         <Route
           path="/projects/:id"
-          element={user ? <div>Project detail — Phase 4 (editor)</div> : <Navigate to="/" />}
+          element={user ? <ProjectDetailPage /> : <Navigate to="/" />}
         />
       </Routes>
     </BrowserRouter>
